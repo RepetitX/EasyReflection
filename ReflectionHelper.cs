@@ -7,6 +7,13 @@ using System.Text.RegularExpressions;
 
 namespace EasyReflection
 {
+    public enum MemberType
+    {
+        Property,
+        Method,
+        ConvertedProperty
+    }
+
     public class ReflectionHelper
     {
         public static object GetMemberValue(string MemberName, object Object)
@@ -84,6 +91,12 @@ namespace EasyReflection
                 }
             }
         }
+
+        protected static MemberType GetMemberType(string MemberName)
+        {
+            return MemberType.ConvertedProperty;            
+        }
+
 
         protected static object GetFirstMemberValue(string MemberName, object Object, out string NewMemberName)
         {
