@@ -2,18 +2,10 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 
 namespace EasyReflection
-{
-    public enum MemberType
-    {
-        Property,
-        Method,
-        ConvertedProperty
-    }
-
+{   
     public class ReflectionHelper
     {
         public static object GetMemberValue(string MemberName, object Object)
@@ -22,7 +14,38 @@ namespace EasyReflection
             {
                 return null;
             }
+            //Проверим приведение типов
+            Regex reType = new Regex(@"^\((?<type>[\w\d\.]+)\)");
+            string typeName = "";
+
+            var match = reType.Match(MemberName);
+            if (match.Success)
+            {
+                MemberName = reType.Replace(MemberName, "");
+                typeName = match.Groups["type"].Value;
+            }
+            object result = getMemberValue(MemberName, Object);
+
+            if (!string.IsNullOrWhiteSpace(typeName))
+            {
+                Type conversionType = Type.GetType(typeName);
+                if (conversionType != null)
+                {
+                    result = Convert.ChangeType(result, conversionType);
+                }
+            }
+
+            return result;
+        }
+
+        protected static object getMemberValue(string MemberName, object Object)
+        {
+            if (string.IsNullOrWhiteSpace(MemberName))
+            {
+                return null;
+            }
             string newMemberName;
+
             object val = GetFirstMemberValue(MemberName, Object, out newMemberName);
             if (val == null)
             {
@@ -32,7 +55,7 @@ namespace EasyReflection
 
             if (!string.IsNullOrWhiteSpace(newMemberName))
             {
-                return GetMemberValue(newMemberName, val);
+                return getMemberValue(newMemberName, val);
             }
             return val;
         }
@@ -90,13 +113,7 @@ namespace EasyReflection
                     }
                 }
             }
-        }
-
-        protected static MemberType GetMemberType(string MemberName)
-        {
-            return MemberType.ConvertedProperty;            
-        }
-
+        }        
 
         protected static object GetFirstMemberValue(string MemberName, object Object, out string NewMemberName)
         {
