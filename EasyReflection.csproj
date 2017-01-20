@@ -44,6 +44,15 @@
     <Compile Include="Attributes\ComparsionValidationAttribute.cs" />
     <Compile Include="Attributes\ComparsionValidationType.cs" />
     <Compile Include="Attributes\ContainsValidationAttribute.cs" />
+    <Compile Include="Comparison\ComparisonMemberTypes.cs" />
+    <Compile Include="Comparison\ComparisonResult.cs" />
+    <Compile Include="Comparison\IComparerProvider.cs" />
+    <Compile Include="Comparison\IObjectComparer.cs" />
+    <Compile Include="Comparison\ListComparerProvider.cs" />
+    <Compile Include="Comparison\MemberDifference.cs" />
+    <Compile Include="Comparison\BaseComparer.cs" />
+    <Compile Include="Comparison\ObjectComparer.cs" />
+    <Compile Include="Comparison\SimpleTypeComparer.cs" />
     <Compile Include="ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\BaseValidator.cs" />
