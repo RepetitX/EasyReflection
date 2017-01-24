@@ -1,17 +1,17 @@
 ﻿namespace EasyReflection.Comparison
 {
-    public class PropertyComparisonResult : IComparisonResult
+    public class SimpleComparisonResult : IComparisonResult
     {
-        public string PropertyName { get; set; }
+        public string MemberName { get; set; }
         public string ValueA { get; }
         public string ValueB { get; }
 
-        public PropertyComparisonResult()
+        public SimpleComparisonResult()
         {
             
         }
 
-        public PropertyComparisonResult(string ValueA, string ValueB)
+        public SimpleComparisonResult(string ValueA, string ValueB)
         {
             //this.PropertyName = PropertyName;
             this.ValueA = ValueA;

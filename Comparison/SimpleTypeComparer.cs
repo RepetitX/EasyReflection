@@ -12,14 +12,14 @@ namespace EasyReflection.Comparison
         {
             if (ObjectA == null && ObjectB == null)
             {
-                return new PropertyComparisonResult();
+                return new SimpleComparisonResult();
             }
             if (ObjectA != null && ObjectA.Equals(ObjectB))
             {
-                return new PropertyComparisonResult();
+                return new SimpleComparisonResult();
             }
 
-            return new PropertyComparisonResult(ObjectA?.ToString(), ObjectB?.ToString());
+            return new SimpleComparisonResult(ObjectA?.ToString(), ObjectB?.ToString());
         }
 
         public override bool IsComparable(MemberInfo MemberInfo)
@@ -30,12 +30,8 @@ namespace EasyReflection.Comparison
                 return false;
             }
 
-            return prop.PropertyType.BaseType?.Name == "ValueType" ||
-                   prop.PropertyType.BaseType?.Name == "Enum" ||
+            return prop.PropertyType.IsValueType ||
                    prop.PropertyType.Name == "String";
-            var eqType = typeof (IEquatable<>).MakeGenericType(prop.PropertyType);
-
-            return prop.PropertyType.GetInterfaces().Contains(eqType);
         }
     }
 }
