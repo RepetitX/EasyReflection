@@ -33,7 +33,7 @@ namespace EasyReflection.Comparison
                     var memberDifference = comparer.CompareObjects(valA, valB);
                     if (memberDifference.Different)
                     {
-                        //memberDifference.MemberName = member.Name;
+                        memberDifference.MemberName = member.Name;
                         result.MemberDifferences.Add(memberDifference);
                     }
                 }
