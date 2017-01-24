@@ -17,10 +17,10 @@ namespace EasyReflection.Comparison
             return true;
         }
 
-        public override ComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
+        public override IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
         {
             var members = typeof (T).GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            ComparisonResult result = new ComparisonResult();
+            ObjectComparisonResult result = new ObjectComparisonResult();
 
             foreach (var member in members)
             {
@@ -33,6 +33,7 @@ namespace EasyReflection.Comparison
                     var memberDifference = comparer.CompareObjects(valA, valB);
                     if (memberDifference.Different)
                     {
+                        //memberDifference.MemberName = member.Name;
                         result.MemberDifferences.Add(memberDifference);
                     }
                 }

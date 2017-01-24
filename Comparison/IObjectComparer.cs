@@ -6,7 +6,7 @@ namespace EasyReflection.Comparison
 {
     public interface IObjectComparer
     {
-        ComparisonResult CompareObjects<T>(T ObjectA, T ObjectB);
+        IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB);
         bool IsComparable(MemberInfo MemberInfo);
     }
 }

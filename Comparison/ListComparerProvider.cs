@@ -7,9 +7,10 @@ namespace EasyReflection.Comparison
     {
         private readonly List<IObjectComparer> comparers = new List<IObjectComparer>();
 
-        public void AddComparer(IObjectComparer Comparer)
+        public ListComparerProvider AddComparer(IObjectComparer Comparer)
         {
             comparers.Add(Comparer);
+            return this;
         }
 
         public IObjectComparer GetComparer(MemberInfo MemberInfo)

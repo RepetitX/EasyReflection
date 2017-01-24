@@ -7,7 +7,7 @@ namespace EasyReflection.Comparison
         protected IComparerProvider comparerProvider;
         protected ComparisonMemberTypes memberTypes;
 
-        public abstract ComparisonResult CompareObjects<T>(T ObjectA, T ObjectB);
+        public abstract IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB);
 
         protected BaseComparer()
         {

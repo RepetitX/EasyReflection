@@ -45,11 +45,13 @@
     <Compile Include="Attributes\ComparsionValidationType.cs" />
     <Compile Include="Attributes\ContainsValidationAttribute.cs" />
     <Compile Include="Comparison\ComparisonMemberTypes.cs" />
-    <Compile Include="Comparison\ComparisonResult.cs" />
+    <Compile Include="Comparison\ObjectComparisonResult.cs" />
+    <Compile Include="Comparison\EnumerableComparisonResult.cs" />
     <Compile Include="Comparison\IComparerProvider.cs" />
+    <Compile Include="Comparison\IComparisonResult.cs" />
     <Compile Include="Comparison\IObjectComparer.cs" />
     <Compile Include="Comparison\ListComparerProvider.cs" />
-    <Compile Include="Comparison\MemberDifference.cs" />
+    <Compile Include="Comparison\PropertyComparisonResult.cs" />
     <Compile Include="Comparison\BaseComparer.cs" />
     <Compile Include="Comparison\ObjectComparer.cs" />
     <Compile Include="Comparison\SimpleTypeComparer.cs" />

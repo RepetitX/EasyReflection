@@ -8,13 +8,18 @@ namespace EasyReflection.Comparison
 {
     public class SimpleTypeComparer : BaseComparer
     {
-        public override ComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
+        public override IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
         {
-            if (ObjectA.Equals(ObjectB))
+            if (ObjectA == null && ObjectB == null)
             {
-                return new ComparisonResult();
+                return new PropertyComparisonResult();
             }
-            return new ComparisonResult(ObjectA.ToString(), ObjectB.ToString());
+            if (ObjectA != null && ObjectA.Equals(ObjectB))
+            {
+                return new PropertyComparisonResult();
+            }
+
+            return new PropertyComparisonResult(ObjectA?.ToString(), ObjectB?.ToString());
         }
 
         public override bool IsComparable(MemberInfo MemberInfo)
@@ -24,6 +29,10 @@ namespace EasyReflection.Comparison
             {
                 return false;
             }
+
+            return prop.PropertyType.BaseType?.Name == "ValueType" ||
+                   prop.PropertyType.BaseType?.Name == "Enum" ||
+                   prop.PropertyType.Name == "String";
             var eqType = typeof (IEquatable<>).MakeGenericType(prop.PropertyType);
 
             return prop.PropertyType.GetInterfaces().Contains(eqType);
