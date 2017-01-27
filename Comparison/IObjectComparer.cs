@@ -8,5 +8,6 @@ namespace EasyReflection.Comparison
     {
         IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB);
         bool IsComparable(MemberInfo MemberInfo);
+        bool IsComparable(Type Type);
     }
 }

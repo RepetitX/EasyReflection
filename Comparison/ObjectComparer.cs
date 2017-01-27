@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace EasyReflection.Comparison
 {
     public class ObjectComparer : BaseComparer
     {        
-        private List<string> ignoredProperties = new List<string>();
+        protected List<string> ignoredProperties = new List<string>();
 
         public ObjectComparer(ComparisonMemberTypes MemberTypes, IComparerProvider ComparerProvider)
             : base(MemberTypes, ComparerProvider)
@@ -13,6 +14,11 @@ namespace EasyReflection.Comparison
         }
 
         public override bool IsComparable(MemberInfo MemberInfo)
+        {
+            return false;
+        }
+
+        public override bool IsComparable(Type Type)
         {
             return true;
         }

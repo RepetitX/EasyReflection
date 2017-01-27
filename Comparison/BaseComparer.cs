@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace EasyReflection.Comparison
 {
@@ -11,7 +12,7 @@ namespace EasyReflection.Comparison
 
         protected BaseComparer()
         {
-            
+
         }
 
         protected BaseComparer(ComparisonMemberTypes MemberTypes, IComparerProvider ComparerProvider)
@@ -21,5 +22,6 @@ namespace EasyReflection.Comparison
         }
 
         public abstract bool IsComparable(MemberInfo MemberInfo);
+        public abstract bool IsComparable(Type Type);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace EasyReflection.Comparison
@@ -18,6 +19,18 @@ namespace EasyReflection.Comparison
             foreach (var cmp in comparers)
             {
                 if (cmp.IsComparable(MemberInfo))
+                {
+                    return cmp;
+                }
+            }
+            return null;
+        }
+
+        public IObjectComparer GetComparer(Type Type)
+        {
+            foreach (var cmp in comparers)
+            {
+                if (cmp.IsComparable(Type))
                 {
                     return cmp;
                 }

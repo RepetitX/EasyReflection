@@ -33,5 +33,11 @@ namespace EasyReflection.Comparison
             return prop.PropertyType.IsValueType ||
                    prop.PropertyType.Name == "String";
         }
+
+        public override bool IsComparable(Type Type)
+        {
+            return Type.IsValueType ||
+                   Type.Name == "String";
+        }
     }
 }
