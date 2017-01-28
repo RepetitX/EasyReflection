@@ -7,7 +7,8 @@ namespace EasyReflection.Comparison
     {
         public List<string> UniqueItemsA { get; } = new List<string>();
         public List<string> UniqueItemsB { get; } = new List<string>();
-        public List<IComparisonResult> ItemDifferences { get; } = new List<IComparisonResult>();
+        public Dictionary<string, IComparisonResult> ItemDifferences { get; } =
+            new Dictionary<string, IComparisonResult>();
 
         public string MemberName { get; set; }
 
