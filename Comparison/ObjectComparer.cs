@@ -30,6 +30,10 @@ namespace EasyReflection.Comparison
 
             foreach (var member in members)
             {
+                if (ignoredProperties.Contains(member.Name))
+                {
+                    continue;
+                }
                 var comparer = comparerProvider.GetComparer(member);
                 if (comparer != null)
                 {
