@@ -44,6 +44,10 @@
     <Compile Include="Attributes\ComparsionValidationAttribute.cs" />
     <Compile Include="Attributes\ComparsionValidationType.cs" />
     <Compile Include="Attributes\ContainsValidationAttribute.cs" />
+    <Compile Include="Cloning\EnumerableCloner.cs" />
+    <Compile Include="Cloning\ObjectCloner.cs" />
+    <Compile Include="Cloning\IClonerProvider.cs" />
+    <Compile Include="Cloning\IObjectCloner.cs" />
     <Compile Include="Comparison\ComparisonMemberTypes.cs" />
     <Compile Include="Comparison\ObjectComparisonResult.cs" />
     <Compile Include="Comparison\EnumerableComparisonResult.cs" />
