@@ -14,7 +14,7 @@ namespace EasyReflection.Cloning
             clonerProvider = ClonerProvider;
         }
 
-        public T CloneObject<T>(T Object) where T : new()
+        public virtual T CloneObject<T>(T Object) where T : new()
         {
             var members = Object.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
             T result = (T) Initialize(Object.GetType());
