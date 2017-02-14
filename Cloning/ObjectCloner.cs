@@ -41,7 +41,7 @@ namespace EasyReflection.Cloning
             return result;
         }
 
-        public void CloneMember(PropertyInfo PropertyInfo, object Clone, object Source)
+        public virtual void CloneMember(PropertyInfo PropertyInfo, object Clone, object Source)
         {
             if (!PropertyInfo.CanWrite)
             {
