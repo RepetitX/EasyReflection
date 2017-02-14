@@ -8,7 +8,7 @@ namespace EasyReflection.Cloning
 {
     public interface IClonerProvider
     {
-        IObjectCloner GetCloner(MemberInfo MemberInfo);
+        IObjectCloner GetCloner(PropertyInfo PropertyInfo);
         IObjectCloner GetCloner(Type Type);
     }
 }

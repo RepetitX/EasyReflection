@@ -25,7 +25,7 @@ namespace EasyReflection.Comparison
 
         public override IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
         {
-            var members = typeof (T).GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            var members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
             ObjectComparisonResult result = new ObjectComparisonResult();
 
             foreach (var member in members)

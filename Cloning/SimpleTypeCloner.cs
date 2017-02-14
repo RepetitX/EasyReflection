@@ -6,26 +6,31 @@ using System.Text;
 
 namespace EasyReflection.Cloning
 {
-    public abstract class EnumerableCloner : IObjectCloner
+    public class SimpleTypeCloner : IObjectCloner
     {
         public T CloneObject<T>(T Object) where T : new()
         {
-            throw new NotImplementedException();
+            return Object;
         }
 
         public void CloneMember(PropertyInfo PropertyInfo, object Clone, object Source)
         {
-            throw new NotImplementedException();
+            if (!PropertyInfo.CanWrite)
+            {
+                return;
+            }
+            var propVal = PropertyInfo.GetValue(Source, null);
+            PropertyInfo.SetValue(Clone, propVal, null);
         }
 
         public bool IsClonable(PropertyInfo PropertyInfo)
         {
-            throw new NotImplementedException();
+            return IsClonable(PropertyInfo.PropertyType);
         }
 
         public bool IsClonable(Type Type)
         {
-            throw new NotImplementedException();
+            return Type.IsValueType || Type.Name == "String";
         }
     }
 }
