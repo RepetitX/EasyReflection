@@ -59,10 +59,12 @@
     <Compile Include="Comparison\IComparisonResult.cs" />
     <Compile Include="Comparison\IObjectComparer.cs" />
     <Compile Include="Comparison\ListComparerProvider.cs" />
-    <Compile Include="Comparison\PropertyComparisonResult.cs" />
+    <Compile Include="Comparison\EquatableComparisonResult.cs" />
+    <Compile Include="Comparison\SimpleComparisonResult.cs" />
     <Compile Include="Comparison\BaseComparer.cs" />
     <Compile Include="Comparison\ObjectComparer.cs" />
     <Compile Include="Comparison\SimpleTypeComparer.cs" />
+    <Compile Include="Comparison\EquatableTypeComparer.cs" />
     <Compile Include="ReflectionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\BaseValidator.cs" />
