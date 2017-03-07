@@ -63,6 +63,7 @@
     <Compile Include="Comparison\SimpleComparisonResult.cs" />
     <Compile Include="Comparison\BaseComparer.cs" />
     <Compile Include="Comparison\ObjectComparer.cs" />
+    <Compile Include="Comparison\StringComparer.cs" />
     <Compile Include="Comparison\SimpleTypeComparer.cs" />
     <Compile Include="Comparison\EquatableTypeComparer.cs" />
     <Compile Include="ReflectionHelper.cs" />
