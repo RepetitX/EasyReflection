@@ -10,6 +10,11 @@ namespace EasyReflection.Comparison
         public Dictionary<string, IComparisonResult> ItemDifferences { get; } =
             new Dictionary<string, IComparisonResult>();
 
+        public Dictionary<string, IComparisonResult> UniqueItemsADifferences { get; } =
+            new Dictionary<string, IComparisonResult>();
+        public Dictionary<string, IComparisonResult> UniqueItemsBDifferences { get; } =
+            new Dictionary<string, IComparisonResult>();
+
         public string MemberName { get; set; }
 
         public bool Different =>
