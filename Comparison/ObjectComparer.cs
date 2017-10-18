@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace EasyReflection.Comparison
@@ -25,7 +26,23 @@ namespace EasyReflection.Comparison
 
         public override IComparisonResult CompareObjects<T>(T ObjectA, T ObjectB)
         {
-            var members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            PropertyInfo[] members = null;
+            if (ObjectA is ICustomComparable)
+            {
+                var propertyNames = ((ICustomComparable) ObjectA).ComparableProperties;
+                if (propertyNames == null || propertyNames.Count == 0)
+                {
+                    propertyNames = ((ICustomComparable)ObjectB).ComparableProperties;
+                }
+
+                members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                    .Where(pr => propertyNames.Contains(pr.Name)).ToArray();
+            }
+
+            if (members == null || members.Length == 0)
+            {
+                members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            }
             ObjectComparisonResult result = new ObjectComparisonResult();
 
             foreach (var member in members)

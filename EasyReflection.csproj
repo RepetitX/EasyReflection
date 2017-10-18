@@ -53,6 +53,7 @@
     <Compile Include="Cloning\IObjectCloner.cs" />
     <Compile Include="Cloning\SimpleTypeCloner.cs" />
     <Compile Include="Comparison\ComparisonMemberTypes.cs" />
+    <Compile Include="Comparison\ICustomComparable.cs" />
     <Compile Include="Comparison\ObjectComparisonResult.cs" />
     <Compile Include="Comparison\EnumerableComparisonResult.cs" />
     <Compile Include="Comparison\IComparerProvider.cs" />
