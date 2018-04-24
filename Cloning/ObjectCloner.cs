@@ -9,15 +9,26 @@ namespace EasyReflection.Cloning
         protected IClonerProvider clonerProvider;
         protected List<string> ignoredProperties = new List<string>();
 
+        protected Type objectType;
+
+        protected ObjectCloner(IClonerProvider ClonerProvider, Type ObjectType)
+        {
+            clonerProvider = ClonerProvider;
+            objectType = ObjectType;
+        }
+
         protected ObjectCloner(IClonerProvider ClonerProvider)
         {
             clonerProvider = ClonerProvider;
+            objectType = null;
         }
 
         public virtual T CloneObject<T>(T Object) where T : new()
         {
-            var members = Object.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            T result = (T) Initialize(Object.GetType());
+            var type = objectType ?? Object.GetType();
+
+            var members = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            T result = (T) Initialize(type);
 
             foreach (var member in members)
             {
@@ -36,7 +47,14 @@ namespace EasyReflection.Cloning
 
         protected virtual object Initialize(Type Type)
         {
-            object result = Type.GetConstructor(new Type[] {}).Invoke(null);
+            var ctor = Type.GetConstructor(new Type[] { });
+
+            if (ctor == null)
+            {
+                throw new Exception($"Type {objectType} must have default constrctor");
+            }
+
+            object result = ctor.Invoke(null);
 
             return result;
         }
