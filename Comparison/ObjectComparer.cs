@@ -6,12 +6,12 @@ using System.Reflection;
 namespace EasyReflection.Comparison
 {
     public class ObjectComparer : BaseComparer
-    {        
+    {
         protected List<string> ignoredProperties = new List<string>();
 
         public ObjectComparer(ComparisonMemberTypes MemberTypes, IComparerProvider ComparerProvider)
             : base(MemberTypes, ComparerProvider)
-        {            
+        {
         }
 
         public override bool IsComparable(MemberInfo MemberInfo)
@@ -29,7 +29,7 @@ namespace EasyReflection.Comparison
             PropertyInfo[] members = null;
             if (ObjectA is ICustomComparable)
             {
-                var propertyNames = ((ICustomComparable) ObjectA).ComparableProperties;
+                var propertyNames = ((ICustomComparable)ObjectA).ComparableProperties;
                 if (propertyNames == null || propertyNames.Count == 0)
                 {
                     propertyNames = ((ICustomComparable)ObjectB).ComparableProperties;
@@ -39,11 +39,17 @@ namespace EasyReflection.Comparison
                     .Where(pr => propertyNames.Contains(pr.Name)).ToArray();
             }
 
+            var result = new ObjectComparisonResult();
+
+            if (ObjectA == null && ObjectB == null)
+            {
+                return result;
+            }
+
             if (members == null || members.Length == 0)
             {
                 members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
             }
-            ObjectComparisonResult result = new ObjectComparisonResult();
 
             foreach (var member in members)
             {
