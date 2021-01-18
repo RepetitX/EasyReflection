@@ -48,7 +48,7 @@ namespace EasyReflection.Comparison
 
             if (members == null || members.Length == 0)
             {
-                members = ObjectA.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                members = (ObjectA?.GetType() ?? ObjectB.GetType()).GetProperties(BindingFlags.Instance | BindingFlags.Public);
             }
 
             foreach (var member in members)
@@ -77,7 +77,7 @@ namespace EasyReflection.Comparison
         protected object GetMemberValue(MemberInfo Member, object Object)
         {
             var prop = Member as PropertyInfo;
-            if (prop == null)
+            if (prop == null || Object == null)
             {
                 return null;
             }
